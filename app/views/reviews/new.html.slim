@@ -1,0 +1,8 @@
+- @page_title="レビューの新規登録"
+
+h2.my-2 = @page_title + '／' + @book.title
+
+.nav.justify-content-end
+  = link_to "「#{@book.title}」のレビュー一覧", book_reviews_path, class: 'nav-link'
+
+= render partial: 'form', locals: { review: @review}

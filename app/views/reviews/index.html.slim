@@ -1,0 +1,28 @@
+- @page_title="レビュー一覧"
+
+h2.my-2 = @page_title + '／' + @book.title 
+
+.nav.justify-content-end
+  = link_to '本の一覧へ戻る', books_path, class: 'nav-link'
+
+= link_to '新規登録', new_book_review_path, class: 'btn btn-primary mb-3'
+
+table.table.table-hover
+  thead.thead-default
+    tr.d-flex
+      th.col-md-2 = Review.human_attribute_name(:when_read)
+      th.col-md-2 = Review.human_attribute_name(:how_feel)
+      th.col-md-4 = Review.human_attribute_name(:review_text)
+      th.col-md-2 = Review.human_attribute_name(:created_at)
+      th.col-md-2
+  tbody
+    - @reviews.each do |review|
+      tr.d-flex
+        td.col-md-2 = review.display_when_read
+        td.col-md-2 = review.display_how_feel
+        td.col-md-4 = review.review_text
+        td.col-md-2 = review.created_at.strftime('%Y/%m/%d %H:%M')
+        / - if review.user_id == current_user.id
+          td.col-md-2
+            = link_to '編集', edit_book_review_path(review.book_id, review.id), class: 'btn btn-primary mr-3'
+            = link_to '削除', book_review_path(review.book_id, review.id), method: :delete, data: { confirm: "削除します。よろしいですか？"}, class: 'btn btn-danger' 

@@ -1,0 +1,48 @@
+- @page_title="本の詳細"
+
+h2.my-2 = @page_title + '／' + @book.title
+
+.nav.justify-content-end
+  = link_to '本の一覧へ戻る', books_path, class: 'nav-link'
+
+.mb-3
+  = image_tag(@book.image_url, width: 100) if @book.image?
+
+table.table.table-hover
+  tbody
+    tr.d-flex
+      th.col-2 = Book.human_attribute_name(:id)
+      td.col-10 = @book.id
+    tr.d-flex
+      th.col-2 = Book.human_attribute_name(:who_recommend)
+      - if @book.who_recommend == 0
+        td.col-10 管理者
+      - elsif @book.who_recommend == 1
+        td.col-10 ユーザー
+      - else
+        td.col-10 メディア
+    tr.d-flex
+      th.col-2 = Book.human_attribute_name(:title)
+      td.col-10 = @book.title
+    tr.d-flex
+      th.col-2 = Book.human_attribute_name(:author)
+      td.col-10 = @book.author
+    tr.d-flex
+      th.col-2 = Book.human_attribute_name(:description)
+      td.col-10 = simple_format(h(@book.description), {}, sanitize: false, wrapper_tag: "div")
+    tr.d-flex
+      th.col-2 投稿
+      td.col-10 = link_to 'レビューを読む & 投稿する', book_reviews_path(@book), class: 'nav-link'
+    tr.d-flex
+      th.col-2 = Book.human_attribute_name(:created_at)
+      td.col-10 = @book.created_at.strftime('%Y/%m/%d %H:%M') 
+    tr.d-flex
+      th.col-2 = Book.human_attribute_name(:updated_at)
+      td.col-10 = @book.updated_at.strftime('%Y/%m/%d %H:%M') 
+
+
+/ 管理者用    
+/ - if book.user_id == current_user.id
+  = link_to '編集', edit_book_path, class: 'btn btn-primary mr-3'
+  = link_to '削除', @book, method: :delete, data: { confirm: "「#{@book.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+/ ここまで

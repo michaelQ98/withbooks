@@ -36,7 +36,7 @@ ja:
         updated_at: 更新日時
       shop:
         name: 店名
-        web: ウェブサイト
+        url: URL
         address: 住所
         description: 紹介文
       theme:

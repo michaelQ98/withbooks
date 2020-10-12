@@ -1,0 +1,8 @@
+- @page_title="本情報の編集"
+
+h2.my-2 = @page_title + '／' + @book.title
+
+.nav.justify-content-end
+  = link_to '本の一覧へ戻る', books_path, class: 'nav-link'
+
+= render partial: 'form', locals: { book: @book }

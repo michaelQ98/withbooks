@@ -1,0 +1,26 @@
+- @page_title = "カフェの詳細"
+h2.my-2 = @page_title + '／' + @shop.name
+
+.nav.justify-content-end
+  = link_to 'カフェ一覧に戻る', shops_path, class: 'nav-link'
+
+table.table.table-hover
+  tbody
+    tr.d-flex
+      th.col-2 = Shop.human_attribute_name(:name)
+      td.col-10 = @shop.name
+    tr.d-flex
+      th.col-2 = Shop.human_attribute_name(:web)
+      td.col-10 = auto_link(simple_format(h(@shop.web), {}, sanitize: false, wrapper_tag: "div"), html: {target: '_blank'})
+    tr.d-flex
+      th.col-2 = Shop.human_attribute_name(:address)
+      td.col-10 = @shop.address
+    tr.d-flex
+      th.col-2 = Shop.human_attribute_name(:description)
+      td.col-10 = @shop.description
+
+/ 管理者用    
+/ - if shop.user_id == current_user.id
+/   = link_to '編集', edit_shop_path, class: 'btn btn-primary mr-3'
+/   = link_to '削除', @shop, method: :delete, data: { confirm: "「#{@shop.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+/ ここまで

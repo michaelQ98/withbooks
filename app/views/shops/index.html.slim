@@ -1,0 +1,23 @@
+- @page_title = "カフェ一覧"
+
+h2.my-2 = "読書に最適な" + @page_title
+
+= link_to '新規登録', new_shop_path, class: 'btn btn-primary mb-3'
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th = Shop.human_attribute_name(:name)
+      th = Shop.human_attribute_name(:url)
+      th = Shop.human_attribute_name(:address)
+      th
+  tbody
+    - @shops.each do |shop|
+      tr
+        td = link_to shop.name,shop_path(shop)
+        td = auto_link(simple_format(h(shop.url), {}, sanitize: false, wrapper_tag: "div"), html: {target: '_blank'})
+        td = shop.address
+        td
+          / - if shop.user_id == current_user.id
+          /  = link_to '編集', edit_shop_path(shop), class: 'btn btn-primary mr-3'
+          /  = link_to '削除', shop, method: :delete, data: { confirm: "削除します。よろしいですか？" }, class: 'btn btn-danger'

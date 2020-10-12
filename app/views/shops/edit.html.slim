@@ -1,0 +1,8 @@
+- @page_title = "カフェの編集"
+
+h2.my-2 = @page_title
+
+.nav.justify-content-end
+  = link_to 'カフェ一覧に戻る', shops_path, class: 'nav-link'
+
+= render partial: 'form', locals: { shop: @shop }

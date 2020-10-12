@@ -1,0 +1,19 @@
+- if review.errors.present?
+  ul#error_explanation
+    - review.errors.full_messages.each do |message|
+      li.text-danger = message
+
+=form_with model: [@book, @review], local: true do |f|
+  .form-group
+    = f.label :when_read
+    br
+    = f.select :when_read, [['〜10代',1], ['20代',2], ['30代',3], ['40代',4], ['50代',5], ['60代',6]], { include_blank: '選択してください'}, class: 'form-control', id: 'when-read'
+  .form-group
+    = f.label :how_feel
+    br
+    = f.select :how_feel, [['ワクワクする',1], ['切なくなる',2], ['誰かに会いたくなる',3], ['何かを始めたくなる',4], ['泣きたくなる',5], ['すぐ再読したくなる',6],['深く考えさせられる', 7]], { include_blank: '選択してください'}, class: 'form-control', id: 'how-feel'
+  .form-group
+    = f.label :review_text
+    br
+    = f.text_area :review_text, rows: 10, class: 'form-control', id: 'review_text'
+  = f.submit nil, class: 'btn btn-primary'

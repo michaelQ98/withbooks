@@ -1,0 +1,31 @@
+- @page_title="本の一覧"
+
+h2.my-2 = @page_title
+
+= link_to '新規登録', new_book_path, class: 'btn btn-primary mb-3' 
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th = Book.human_attribute_name(:who_recommend)
+      th = Book.human_attribute_name(:title)
+      th = Book.human_attribute_name(:author)
+      th = Book.human_attribute_name(:created_at)
+      th
+  tbody
+    - @books.each do |book|
+      tr
+        - if book.who_recommend==0
+          td 管理者
+        - elsif book.who_recommend==1
+          td ユーザー
+        - else
+          td メディア
+        td = link_to book.title, book_path(book)
+        td = book.author
+        td = book.created_at.strftime('%Y/%m/%d %H:%M') 
+        / - if book.id = current_user.id
+        /   td
+        /      = link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3'
+        /      = link_to '削除', book, method: :delete, data: { confirm: "「#{book.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+  
