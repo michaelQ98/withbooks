@@ -6,7 +6,7 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+# gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -59,3 +59,11 @@ gem 'rails_autolink'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+
+group :production do
+  gem 'pg',             '0.18.0'
+  gem 'rails_12factor', '0.0.2'
+  gem 'fog-aws'
+end
+
+gem 'mini_magick'
