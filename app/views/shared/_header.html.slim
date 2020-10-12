@@ -1,0 +1,15 @@
+.app-title.navbar.navbar-expand-md.navbar-light.bg-light
+  = link_to "WithBooks", root_url, class:'navbar-brand'
+  button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navmenu1" aria-controls="navmenu1" aria-expanded="false" aria-label="Toggle navigation"]
+    span.navbar-toggler-icon
+  #navmenu1.collapse.navbar-collapse.justify-content-end
+    ul.navbar-nav.ml-auto
+      - if user_signed_in?
+        li.nav-item = link_to 'TOP', root_path, class: 'nav-link'
+        li.nav-item = link_to '本を探す',  books_path, class: 'nav-link'
+        li.nav-item = link_to '本を語る',  themes_path, class: 'nav-link'
+        li.nav-item = link_to '本を読む',  shops_path, class: 'nav-link'
+        li.nav-item = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        li.nav-item = link_to 'ユーザー登録', new_user_registration_path, class: 'nav-link'
+        li.nav-item = link_to 'ログイン',  new_user_session_path, class: 'nav-link'
