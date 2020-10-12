@@ -16,7 +16,6 @@ table.table.table-hover
     - @themes.each do |theme|
       tr.d-flex
         td.col-md-4 = link_to theme.theme_text, theme_posts_path(theme)
-        td.col-md-4 = theme.theme_text
         td.col-md-3 = theme.nickname
         td.col-md-3 = theme.created_at.strftime('%Y/%m/%d %H:%M') 
         - if theme.user_id == current_user.id
