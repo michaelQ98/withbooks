@@ -1,0 +1,26 @@
+- @page_title="投稿一覧"
+
+h2.my-2 = @theme.theme_text
+
+.nav.justify-content-end
+ = link_to 'テーマ一覧へ戻る', themes_path, class:'nav-link'
+
+= link_to '新規投稿', new_theme_post_path, class:'btn btn-primary mb-3'
+
+table.table.table-hover
+  thead.thead-default
+      tr.d-flex
+        th.col-md-6 = Post.human_attribute_name(:post_text)
+        th.col-md-2 = Post.human_attribute_name(:contributer)
+        th.col-md-2 = Post.human_attribute_name(:created_at)
+        th.col-md-2
+  tbody
+    - @posts.each do |post|
+      tr.d-flex
+        td.col-md-6 = post.post_text
+        td.col-md-2 = post.contributer
+        td.col-md-2 = post.created_at.strftime('%Y/%m/%d %H:%M')
+        / -if post.user_id == current_user.id
+        /   td.col-md-2
+        /     = link_to '編集', edit_theme_post_path(post.theme_id, post.id), class:'btn btn-primary mr-3'
+        /     = link_to '削除', theme_post_path(post.theme_id, post.id), method: :delete, data: { confirm: "削除します。よろしいですか？" }, class: 'btn btn-danger'

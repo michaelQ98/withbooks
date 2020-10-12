@@ -1,0 +1,13 @@
+- if theme.errors.present?
+  ul#error_explanation
+    - theme.errors.full_messages.each do |message|
+      li.text-danger = message
+
+= form_with model: theme, local: true do|f|
+  .form-group
+    = f.label :theme_text
+    = f.text_area :theme_text, rows: 5, class:'form-control', id:'theme_text'
+  .form-group
+    = f.label :nickname
+    = f.text_field :nickname, class:'form-control', id:'theme_text'
+  = f.submit nil, class:'btn btn-primary'

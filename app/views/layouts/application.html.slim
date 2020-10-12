@@ -16,7 +16,7 @@ html
         / - if current_user
         li.nav-item = link_to 'TOP', root_path, class: 'nav-link'
         li.nav-item = link_to '本を探す',  books_path, class: 'nav-link'
-        /   li.nav-item = link_to '本を語る',  themes_path, class: 'nav-link'
+        li.nav-item = link_to '本を語る',  themes_path, class: 'nav-link'
         li.nav-item = link_to '本を読む',  shops_path, class: 'nav-link'
         /   li.nav-item = link_to 'ログアウト',  logout_path, method: :delete, class: 'nav-link'
         / - else

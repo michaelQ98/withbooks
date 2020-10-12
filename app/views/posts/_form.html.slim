@@ -1,0 +1,15 @@
+- if post.errors.present?
+  ul#error_explanation
+    - post.errors.full_messages.each do |message|
+      li.text-danger = message
+
+= form_with model: [@theme, @post] ,local: true do |f|
+  .form-group
+    = f.label :contributer
+    br
+    = f.text_field :contributer, class:'form-control', id:'contributer'
+  .form-group
+    = f.label :post_text
+    br
+    = f.text_field :post_text, class:'form-control',  id:'post_text'
+  = f.submit nil, class:'btn btn-primary my-3'

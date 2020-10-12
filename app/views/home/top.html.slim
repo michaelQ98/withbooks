@@ -1,2 +1,55 @@
-h1 Home#top
-p Find me in app/views/home/top.html.slim
+- @page_title = "TOP"
+
+.card.w-auto.my-3
+  = image_tag "jessica-mulder-xgWZ-h4Bh-4-unsplash.jpg", class: 'card-img img-fluid rounded' 
+  .card-img-overlay.text-right.text-white
+    h3 今日は何を読もうかな。　　　　
+    p
+    h3 昨日読んだ本、面白かったよ。　
+    p
+    h3 そんな気持ち、共有しませんか？
+
+main
+  section.pt-5
+    .container
+      h2.text-center.border-bottom.border-secondary.mb-5.pb-4　今日の一冊
+      - @admin_recom.each do |f|
+        .row.mb-5
+          .col-sm-4
+            = image_tag(f.image_url, class: 'img-thumbnail') if f.image? 
+          .col-sm-8
+            h3 = f.title
+            p = f.author
+             | ／著
+            p = simple_format(h(f.description), {}, sanitize: false, wrapper_tag: "div")
+  section.py-5
+    .container
+      .row
+        .col-sm-6
+          h3.text-center.border-bottom.border-secondary.mb-5.pb-4　ユーザーのおすすめ
+          - @user_recom.each do |f|
+            .row.p-4
+              .col-sm-4
+                =image_tag(f.image_url,width:100, class: 'img-thumbnail') if f.image?
+              .col-sm-8
+                = link_to f.title, book_path(f), class: 'text-link'
+                br
+                =f.author
+                | ／著
+        .col-sm-6
+          h3.text-center.border-bottom.border-secondary.mb-5.pb-4　メディアのおすすめ
+          - @media_recom.each do |f|
+            .row.p-4
+              .col-sm-4
+                =image_tag(f.image_url, width:100, class: 'img-thumbnail') if f.image?
+              .col-sm-8
+                = link_to f.title, book_path(f), class: 'text-link'
+                br
+                =f.author
+                | ／著
+
+footer.text-center.border-top.border-secondary.mt-5.pt-3.text-muted
+  p
+    | 掲載の記事・写真・イラスト等のすべてのコンテンツの無断複写・転載を禁じます。
+  p
+    | 2020 ©AngieRoad

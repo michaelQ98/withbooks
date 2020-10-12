@@ -1,0 +1,8 @@
+- @page_title="テーマ編集"
+
+h2.my-2 = @page_title
+
+.nav.justify-content-end
+  = link_to 'テーマ一覧へ戻る', themes_path, class:'nav-link'
+
+= render partial: 'form', locals: {theme: @theme}

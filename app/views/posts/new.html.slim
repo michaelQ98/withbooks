@@ -1,0 +1,8 @@
+- @page_title="新規投稿"
+
+h2.my-2 = @page_title + '／' + @theme.theme_text
+
+.nav.justify-content-end
+  = link_to '投稿一覧へ戻る', theme_posts_path, class:'nav-link'
+
+= render partial: 'form', locals: { post: @post}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_030346) do
+ActiveRecord::Schema.define(version: 2020_10_12_061041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2020_10_12_030346) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
     t.index ["title"], name: "index_books_on_title", unique: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "theme_id", null: false
+    t.integer "user_id", null: false
+    t.text "post_text", null: false
+    t.string "contributer", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -42,6 +51,14 @@ ActiveRecord::Schema.define(version: 2020_10_12_030346) do
     t.string "url"
     t.string "address", null: false
     t.text "description"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string "nickname", null: false
+    t.text "theme_text", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
