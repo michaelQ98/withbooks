@@ -11,6 +11,7 @@ class ShopsController < ApplicationController
 
   def create
     @shop = Shop.new(shop_params)
+    @shop.user_id = current_user.id
 
     if @shop.save
       redirect_to @shop, notice:"「#{@shop.name}」を登録しました。"
