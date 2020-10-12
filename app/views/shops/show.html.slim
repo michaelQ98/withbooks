@@ -10,8 +10,8 @@ table.table.table-hover
       th.col-2 = Shop.human_attribute_name(:name)
       td.col-10 = @shop.name
     tr.d-flex
-      th.col-2 = Shop.human_attribute_name(:web)
-      td.col-10 = auto_link(simple_format(h(@shop.web), {}, sanitize: false, wrapper_tag: "div"), html: {target: '_blank'})
+      th.col-2 = Shop.human_attribute_name(:url)
+      td.col-10 = auto_link(simple_format(h(@shop.url), {}, sanitize: false, wrapper_tag: "div"), html: {target: '_blank'})
     tr.d-flex
       th.col-2 = Shop.human_attribute_name(:address)
       td.col-10 = @shop.address
