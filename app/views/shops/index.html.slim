@@ -18,6 +18,6 @@ table.table.table-hover
         td = auto_link(simple_format(h(shop.url), {}, sanitize: false, wrapper_tag: "div"), html: {target: '_blank'})
         td = shop.address
         td
-          / - if shop.user_id == current_user.id
-          /  = link_to '編集', edit_shop_path(shop), class: 'btn btn-primary mr-3'
-          /  = link_to '削除', shop, method: :delete, data: { confirm: "削除します。よろしいですか？" }, class: 'btn btn-danger'
+          - if shop.user_id == current_user.id
+           = link_to '編集', edit_shop_path(shop), class: 'btn btn-primary mr-3'
+           = link_to '削除', shop, method: :delete, data: { confirm: "削除します。よろしいですか？" }, class: 'btn btn-danger'

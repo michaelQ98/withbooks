@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @books = Book.all
   end
@@ -14,8 +16,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    # @book.user_id = current_user.id
-    @book.user_id = 1
+    @book.user_id = current_user.id
 
     if @book.save
       redirect_to books_path, notice:"「#{@book.title}」を登録しました。"
@@ -43,6 +44,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :description, :who_recommend, :image)
+    params.require(:book).permit(:title, :author, :description, :who_recommend, :image, :user_id)
   end
 end

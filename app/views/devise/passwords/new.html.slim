@@ -1,0 +1,13 @@
+- @page_title = "パスワード？"
+
+h2.my-3 = @page_title
+
+= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  = render "devise/shared/error_messages", resource: resource
+  .field.mb-3
+    = f.label :email
+    br
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .actions.mb-3
+    = f.submit "Send me reset password instructions"
+= render "devise/shared/links"

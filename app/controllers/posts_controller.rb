@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @theme = Theme.find(params[:theme_id])
     @posts = Post.where(theme_id: params[:theme_id])
@@ -11,10 +13,7 @@ class PostsController < ApplicationController
 
   def create
     @theme = Theme.find(params[:theme_id])
-    #@post = Post.new(post_params.merge(theme_id: params[:theme_id], user_id: current_user.id))
-    @post = Post.new(post_params.merge(theme_id: params[:theme_id], user_id: 1))
-    # @post.theme_id = params[:theme_id]
-    # @post.user_id = current_user.id
+    @post = Post.new(post_params.merge(theme_id: params[:theme_id], user_id: current_user.id))
 
     if @post.save
       redirect_to theme_posts_url, notice:"登録が完了しました。"

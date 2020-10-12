@@ -1,4 +1,6 @@
 class ThemesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @themes = Theme.all
   end
@@ -12,8 +14,7 @@ class ThemesController < ApplicationController
 
   def create
     @theme = Theme.new(theme_params)
-    # @theme.user_id = current_user.id
-    @theme.user_id = 1
+    @theme.user_id = current_user.id
     
     if @theme.save
       redirect_to themes_url, notice:"「#{@theme.nickname}」さんのテーマを登録しました。"

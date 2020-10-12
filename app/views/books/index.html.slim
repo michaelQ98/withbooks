@@ -24,8 +24,8 @@ table.table.table-hover
         td = link_to book.title, book_path(book)
         td = book.author
         td = book.created_at.strftime('%Y/%m/%d %H:%M') 
-        / - if book.id = current_user.id
-        /   td
-        /      = link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3'
-        /      = link_to '削除', book, method: :delete, data: { confirm: "「#{book.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+        - if book.user_id == current_user.id
+          td
+             = link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3'
+             = link_to '削除', book, method: :delete, data: { confirm: "「#{book.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
   

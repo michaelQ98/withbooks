@@ -19,8 +19,6 @@ table.table.table-hover
       th.col-2 = Shop.human_attribute_name(:description)
       td.col-10 = @shop.description
 
-/ 管理者用    
-/ - if shop.user_id == current_user.id
-/   = link_to '編集', edit_shop_path, class: 'btn btn-primary mr-3'
-/   = link_to '削除', @shop, method: :delete, data: { confirm: "「#{@shop.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
-/ ここまで
+- if @shop.user_id == current_user.id
+  = link_to '編集', edit_shop_path, class: 'btn btn-primary mr-3'
+  = link_to '削除', @shop, method: :delete, data: { confirm: "「#{@shop.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

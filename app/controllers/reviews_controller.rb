@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @book = Book.find(params[:book_id])
     @reviews = Review.where(book_id: params[:book_id])
@@ -11,10 +13,7 @@ class ReviewsController < ApplicationController
 
   def create
     @book = Book.find(params[:book_id])
-    @review = Review.new(review_params.merge(book_id: params[:book_id], user_id: 1))
-    # @review = Review.new(review_params.merge(book_id: params[:book_id], user_id: current_user.id))
-    # @review.book_id= params[:book_id]
-    # @review.user_id= current_user.id
+    @review = Review.new(review_params.merge(book_id: params[:book_id], user_id: current_user.id))
 
     if @review.save
       redirect_to book_reviews_url, notice:"登録が完了しました。"

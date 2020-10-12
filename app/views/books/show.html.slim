@@ -41,8 +41,6 @@ table.table.table-hover
       td.col-10 = @book.updated_at.strftime('%Y/%m/%d %H:%M') 
 
 
-/ 管理者用    
-/ - if book.user_id == current_user.id
+- if @book.user_id == current_user.id
   = link_to '編集', edit_book_path, class: 'btn btn-primary mr-3'
   = link_to '削除', @book, method: :delete, data: { confirm: "「#{@book.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
-/ ここまで
