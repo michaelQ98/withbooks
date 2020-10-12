@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title
+      | Withbooks
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' 
+  body
+    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
+      .navbar-brand WithBooks
+
+      ul.navbar-nav.ml-auto
+        - if current_user
+          li.nav-item = link_to 'TOP', root_path, class: 'nav-link'
+        /   li.nav-item = link_to '本を探す',  books_path, class: 'nav-link'
+        /   li.nav-item = link_to '本を語る',  themes_path, class: 'nav-link'
+        /   li.nav-item = link_to '本を読む',  shops_path, class: 'nav-link'
+        /   li.nav-item = link_to 'ログアウト',  logout_path, method: :delete, class: 'nav-link'
+        / - else
+        /   li.nav-item = link_to 'ログイン',  login_path, class: 'nav-link'
+        / - if current_user&.admin_flag==true
+        /   li.nav-item = link_to 'ユーザー一覧', admin_users_path, class: 'nav-link'
+    .container
+      - if flash.notice.present?
+        .alert.alert-success = flash.notice
+      = yield
